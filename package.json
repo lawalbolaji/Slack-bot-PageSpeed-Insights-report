@@ -1,0 +1,24 @@
+{
+  "name": "slack-bot-pagespeed-insights-report",
+  "version": "1.0.0",
+  "description": "This is an open source project from [DevProjects](http://www.codementor.io/projects). Feedback and questions are welcome! Find the project requirements here: [Slack bot: PageSpeed Insights report](https://www.codementor.io/projects/tool/slack-bot-pagespeed-insights-report-atx32l925h)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lawalbolaji/Slack-bot-PageSpeed-Insights-report.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lawalbolaji/Slack-bot-PageSpeed-Insights-report/issues"
+  },
+  "homepage": "https://github.com/lawalbolaji/Slack-bot-PageSpeed-Insights-report#readme",
+  "dependencies": {
+    "@slack/bolt": "^3.8.1",
+    "dotenv": "^10.0.0"
+  }
+}
