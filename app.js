@@ -7,10 +7,12 @@ const app = new App({
     signingSecret: process.env['BOT_SIGNING_SECRET']
 });
 
-(async () => {
+async function run(){
 
     // start app
     await app.start(process.env['PORT'] || 3000);
 
     console.log('⚡️ Bolt app is running!');
-})();
+};
+
+run();
