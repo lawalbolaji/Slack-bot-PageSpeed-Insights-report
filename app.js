@@ -1,10 +1,13 @@
 require('dotenv').config();
 const { App } = require('@slack/bolt');
+const psi = require('./api/psi');
 
 // Initialize app in socket mode
 const app = new App({
     token: process.env['BOT_USER_TOKEN'],
     signingSecret: process.env['BOT_SIGNING_SECRET'],
+    
+    // enable socketMode for development
     socketMode: true,
     appToken: process.env['SOCKET_MODE_TOKEN'],
 
@@ -12,41 +15,23 @@ const app = new App({
     port: process.env['PORT'] || 3000
 });
 
-// listen for messages containing hello
-app.message('hello psi', async ({message, say}) => {
-    
-    await say({
-        blocks: [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": `Hi <@${message.user}>`
-                },
-                "accessory": {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": `Click Me`
-                    },
-                    "action_id": "button_click"
-                }
-            }
-        ],
-        text: `Hi <@${message.user}>`
-    });
-});
+app.command('/psi', async ({body, ack, say}) => {
+    const url = body.text;
+    const userId = body.user_id;
 
-app.action("button_click", async ({body, ack, say}) => {
-
+    // acknowledge request
     await ack();
-    await say(`<@${body.user.id}> clicked the button`);
 
+    await say(`<@${userId}> Kindly hold on, your report is being generated...\n`);
+
+    psi.generate_report(url).then(async ({data}) => {
+        await say(`<@${userId}> Your report is ready!\n`);
+        await say(`Speed Score: ${data.lighthouseResult.categories.performance.score}`);
+    });
 });
 
 // run app
 (async () => {
-
     // start app
     await app.start();
 
