@@ -2,9 +2,11 @@
   "name": "slack-bot-pagespeed-insights-report",
   "version": "1.0.0",
   "description": "This is an open source project from [DevProjects](http://www.codementor.io/projects). Feedback and questions are welcome! Find the project requirements here: [Slack bot: PageSpeed Insights report](https://www.codementor.io/projects/tool/slack-bot-pagespeed-insights-report-atx32l925h)",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "devStart": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,8 @@
   "dependencies": {
     "@slack/bolt": "^3.8.1",
     "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
